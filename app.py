@@ -14,7 +14,7 @@ from PIL import Image
 import numpy as np
 
 # --- Configuration ---
-INPUT_FOLDER = "./scans_to_process"
+INPUT_FOLDER = "./temp_dir"
 EXCEPTION_FOLDER = "./exceptions"
 OUTPUT_DIR = "./classified_output"
 
@@ -46,9 +46,33 @@ tab1, tab2, tab3 = st.tabs(["Process Documents", "Review Exceptions", "Analytics
 with tab1:
     st.header("Automatic Processing")
 
-    # 8a. Allow user to select folder (simulate with input field)
+    ##########  Allow user to select folder (simulate with input field)
     st.subheader("Configuration")
-    selected_folder = st.text_input("Folder path with images to process:", value=INPUT_FOLDER)
+    
+    ########## Create a multiple file uploader
+    uploaded_files = st.file_uploader(
+        "Choose documents to classify", 
+        accept_multiple_files=True,
+        type=['png', 'jpg', 'jpeg', 'pdf', 'docx', 'tif', 'tiff']
+        )
+
+        ######### Process the files
+    if uploaded_files:
+        st.info(f"Loaded {len(uploaded_files)} files for processing.")
+        
+        for uploaded_file in uploaded_files:
+            # Streamlit provides the file name and content (bytes)
+            filename = uploaded_file.name
+            
+            # Save a temporary copy because UnstructuredLoader/Pillow often need a path
+            temp_path = os.path.join("temp_dir", filename)
+            if not os.path.exists("temp_dir"):
+                os.makedirs("temp_dir")
+                
+            with open(temp_path, "wb") as f:
+                f.write(uploaded_file.getbuffer())
+
+    selected_folder = "temp_dir"
 
     files_list = get_files_to_process(selected_folder)
     initial_file_count = len(files_list)
