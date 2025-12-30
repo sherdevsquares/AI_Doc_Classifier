@@ -1,0 +1,6 @@
+tesseract-ocr
+tesseract-ocr-eng
+libmagic-dev
+poppler-utils
+libxml2-dev
+libxslt-dev

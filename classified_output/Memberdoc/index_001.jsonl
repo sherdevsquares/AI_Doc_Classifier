@@ -1,0 +1,3 @@
+{"category_name": "Memberdoc", "confidence_score": 0.95, "member_name": "Amelia Nguyen", "member_number": "16380985", "doc_date": "12/05/2025", "loan_type": null, "file_loc": "./classified_output\\Memberdoc\\16380985_KYC_Change_Filled_3.pdf"}
+{"category_name": "Memberdoc", "confidence_score": 0.95, "member_name": "Sophia Martinez", "member_number": "74873214", "doc_date": "12/05/2025", "loan_type": null, "file_loc": "./classified_output\\Memberdoc\\74873214_Signature_Card_Filled_3.docx"}
+{"category_name": "Memberdoc", "confidence_score": 1.0, "member_name": "benjamin Anderson", "member_number": "25037937", "doc_date": "2025-12-28", "loan_type": null, "file_loc": "./classified_output\\Memberdoc\\25037937_Wire_Authorization_3.jpeg"}

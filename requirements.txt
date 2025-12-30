@@ -1,0 +1,18 @@
+langchain
+langchain-openai
+langchain-anthropic
+langchain-community
+pydantic
+langchain_unstructured
+Pillow
+pytesseract
+unstructured
+unstructured[all-docs]
+streamlit
+streamlit_pdf_viewer
+pandas
+numpy
+matplotlib
+filetype
+Pillow
+mammoth # for word to HTML conversion
