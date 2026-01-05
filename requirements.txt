@@ -16,3 +16,5 @@ matplotlib
 filetype
 Pillow
 mammoth # for word to HTML conversion
+datetime
+

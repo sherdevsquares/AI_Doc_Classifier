@@ -3,6 +3,7 @@ from streamlit_pdf_viewer import pdf_viewer
 import os
 import shutil
 import time
+import datetime
 import pandas as pd
 import glob
 import json
@@ -38,8 +39,12 @@ def get_files_to_process(folder):
     return files
 
 # --- Tab Navigation ---
-tab1, tab2, tab3 = st.tabs(["Process Documents", "Review Exceptions", "Analytics Dashboard"])
-
+tab1, tab2, tab3, tab4 = st.tabs([
+    "Process Documents", 
+    "Review Exceptions", 
+    "Analytics Dashboard", 
+    "System Logs"
+])
 
 ############ Tab 1: Process Documents   ############
 
@@ -292,3 +297,32 @@ with tab3:
         
     else:
         st.info("No documents processed yet for analytics.")
+    
+    with tab4:
+        st.header("System Logs & Debugging")
+        
+        # Generate today's log filename (matches core_processor.py format)
+        log_filename = f"log_{datetime.date.today().strftime('%Y-%m-%d')}.log"
+        
+        if os.path.exists(log_filename):
+            st.subheader(f"Viewing: {log_filename}")
+            
+            with open(log_filename, "r") as f:
+                # Read all lines from the log file
+                log_lines = f.readlines()
+                
+                # Show the last 100 lines for quick debugging
+                # st.code provides a scrollable, formatted view ideal for logs
+                st.code("".join(log_lines[-100:]), language="log")
+                
+            # Add a download button so you can save the log locally for full analysis
+            st.download_button(
+                label="Download Full Log File",
+                data="".join(log_lines),
+                file_name=log_filename,
+                mime="text/plain"
+            )
+        else:
+            st.warning(f"No log file found for today ({log_filename}). Ensure processing has started.")
+        
+
