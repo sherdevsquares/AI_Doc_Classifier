@@ -17,4 +17,5 @@ filetype
 Pillow
 mammoth # for word to HTML conversion
 datetime
+opencv-python-headless>=4.10.0.84
 
